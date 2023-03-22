@@ -32,11 +32,11 @@ async function fetchAsync (url, payload) {
 //fetchAsync("http://127.0.0.1:3000/create_schedule", null)
 
 let schedule = {
-    "date": "2018-04-04",
     "doctor_id": 1,
-    "patient_id": 1
-    "time": "9-30",
+    "patient_id": null,
+    "date": '3-3-2018',
+    "time_from": '20-30',
     "is_free": true,
 }
 
-fetchAsync("http://127.0.0.1:3000/create_schedule", schedule)
+fetchAsync("http://127.0.0.1:3000/get_schedule", schedule)

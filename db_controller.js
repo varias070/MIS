@@ -59,13 +59,8 @@ async function create_schedule(data){
 
 
 async function get_schedule(data){
-    let schedule = await prisma.doctor.findUnique({
-  where: {
-    id: 1,
-  },
-  include: {
-    appointments: true,
-  },
+    let schedule = await prisma.appointment.findMany({
+    where: data,
 })
-    console.log(schedule)
+    return schedule
 }

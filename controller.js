@@ -100,9 +100,11 @@ function get_schedule(req, res){
     req.on("end", () =>{
         let data = JSON.parse(body)
         let schedule = db.get_schedule(data)
+        console.log(schedule)
+
         res.statusCode = 200;
         res.setHeader("Content-Type", "application/json");
-        res_data = JSON.stringify(data)
+        let res_data = JSON.stringify(schedule)
         res.end(res_data)
     });
 }

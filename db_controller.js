@@ -2,7 +2,7 @@ const { PrismaClient } = require('@prisma/client');
 const error = require("./errors.js")
 
 const prisma = new PrismaClient();
-module.exports = {create_patient, create_doctor, create_schedule, get_schedule}
+module.exports = {create_patient, create_doctor, create_schedule, get_schedule, make_appointment}
 
 
 async function create_patient(register_data) {
@@ -63,4 +63,17 @@ async function get_schedule(data){
     where: data,
 })
     return schedule
+}
+
+
+async function make_appointment(data){
+    let appointment = await prisma.appointment.update({
+        where :{
+            id: 79
+        },
+        data: {
+            is_free: false,
+            patient_id: 1,
+        },
+    })
 }

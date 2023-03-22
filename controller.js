@@ -1,7 +1,7 @@
 const db = require("./db_controller.js");
 const dayjs = require('dayjs');
 
-module.exports = {create_patient, create_schedule, get_schedule}
+module.exports = {create_patient, create_schedule, get_schedule, make_appointment}
 
 function create_patient(req, res){
     let body = "";
@@ -61,33 +61,38 @@ function create_patient(req, res){
 //};
 
 function create_schedule(req, res){
-    console.log("begin")
-    let date = dayjs('2018-04-04T09:00')
-    let appointments = []
-    let minute = 30
-    for (let i = 0; i < 24; i++){
-        let r = date.add(minute, "minute")
-        let str_date = `${r.day()}-${r.month()}-${r.year()}`
-        let time_to = `${r.hour()}-${r.minute()}`
-        let time_from = r.subtract(30, "minute")
-        let str_time_from = `${time_from.hour()}-${time_from.minute()}`
-        data = {
-            doctor_id: 1,
-            date: str_date,
-            time_from: str_time_from,
-            time_to: time_to,
-            is_free: true,
-            }
-        appointments.push(data)
-        minute += 30
-    }
-    db.create_schedule(appointments)
-       req.on("end", () =>{
+    let body = "";
+    req.on("data", chunk => {
+        body += chunk.toString();
+    });
+
+//    let data = JSON.parse(body)
+    req.on("end", () =>{
+        let data = JSON.parse(body)
+        let date = dayjs(data.date)
+        let appointments = []
+        let minute = 30
+        for (let i = 0; i < 24; i++){
+            let r = date.add(minute, "minute")
+            let str_date = `${r.day()}-${r.month()}-${r.year()}`
+            let time_to = `${r.hour()}-${r.minute()}`
+            let time_from = r.subtract(30, "minute")
+            let str_time_from = `${time_from.hour()}-${time_from.minute()}`
+            data = {
+                doctor_id: data.doctor_id,
+                date: str_date,
+                time_from: str_time_from,
+                time_to: time_to,
+                is_free: true,
+                }
+            appointments.push(data)
+            minute += 30
+        }
+        db.create_schedule(appointments)
         res.statusCode = 200;
         res.setHeader("Content-Type", "application/json");
-        res_data = JSON.stringify(data)
-        res.end(res_data)
-    });
+        res.end()
+    })
 }
 
 
@@ -99,12 +104,29 @@ function get_schedule(req, res){
 
     req.on("end", () =>{
         let data = JSON.parse(body)
-        let schedule = db.get_schedule(data)
-        console.log(schedule)
+        db.get_schedule(data).then((answer) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            let res_data = JSON.stringify(answer)
+            res.end(res_data)
+        })
+    })
+}
 
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-        let res_data = JSON.stringify(schedule)
-        res.end(res_data)
+
+function make_appointment(req, res){
+    let body = "";
+    req.on("data", chunk => {
+        body += chunk.toString();
     });
+
+    req.on("end", () =>{
+        let data = JSON.parse(body)
+        db.get_schedule(data).then((answer) => {
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            let res_data = JSON.stringify(answer)
+            res.end(res_data)
+        })
+    })
 }

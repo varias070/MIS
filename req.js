@@ -31,12 +31,21 @@ async function fetchAsync (url, payload) {
 //fetchAsync("http://127.0.0.1:3000/create_appointment", appointment)
 //fetchAsync("http://127.0.0.1:3000/create_schedule", null)
 
-let schedule = {
+let create_schedule = {
     "doctor_id": 1,
-    "patient_id": null,
-    "date": '3-3-2018',
-    "time_from": '20-30',
-    "is_free": true,
+    "date": "2018-04-04T09:00",
 }
+fetchAsync("http://127.0.0.1:3000/create_schedule", create_schedule)
+//let schedule = {
+//    "doctor_id": 1,
+//    "patient_id": null,
+//    "date": '3-3-2018',
+//    "time_from": '20-30',
+//    "is_free": true,
+//}
+//fetchAsync("http://127.0.0.1:3000/get_schedule", schedule)
 
-fetchAsync("http://127.0.0.1:3000/get_schedule", schedule)
+//let appointment_update = {
+//    "id": 1,
+//}
+//fetchAsync("http://127.0.0.1:3000/make_appointment", appointment_update)

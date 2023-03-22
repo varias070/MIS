@@ -25,6 +25,10 @@ const server = http.createServer((req, res) => {
     if (req.url == "/get_schedule"){
         controller.get_schedule(req, res)
     }
+
+    if (req.url == "/make_appointment"){
+        controller.make_appointment(req, res)
+    }
 //    else if (req.url == "/create_entry"){
 //        create_entry(req, res)
 //    }

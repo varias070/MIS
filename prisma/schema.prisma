@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Patient {
+  id     Int    @id @default(autoincrement())
+  phone  String
+  name   String
+  email  String @unique
+  gender String
+  appointments Appointment[]
+}
+
+model Doctor {
+  id       Int        @id @default(autoincrement())
+  name     String
+  spec     String
+  price    Int
+  appointments Appointment[]
+}
+
+model Appointment  {
+  id        Int     @id @default(autoincrement())
+  doctor    Doctor  @relation(fields: [doctor_id], references: [id])
+  doctor_id Int
+  patient    Patient? @relation(fields: [patient_id], references: [id])
+  patient_id Int?
+  date      String
+  time_from String
+  time_to   String
+  is_free    Boolean
+  type      Int?
+}

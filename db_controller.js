@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
-module.exports = {create_patient, create_doctor, create_schedule, get_schedule, make_appointment}
+module.exports = {create_patient, create_doctor, create_schedule, get_schedule, make_appointment, create_spec}
 
 
 async function create_patient(register_data) {
@@ -99,4 +99,11 @@ async function make_appointment(data){
         },
     })
     return appointment
+}
+
+async function create_spec(data){
+    let spec = await prisma.spec.create({
+        data: data,
+    })
+    return spec
 }

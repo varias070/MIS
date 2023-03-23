@@ -18,9 +18,9 @@ const server = http.createServer((req, res) => {
         controller.create_doctor(req, res)
     }
 
-//    if (req.url == "/create_appointment"){
-//        controller.create_appointment(req, res)
-//    }
+    if (req.url == "/create_spec"){
+        controller.create_spec(req, res)
+    }
 
     if (req.url =="/create_schedule"){
         controller.create_schedule(req, res)

@@ -1,5 +1,4 @@
 const { PrismaClient } = require('@prisma/client');
-const error = require("./errors.js")
 
 const prisma = new PrismaClient();
 module.exports = {create_patient, create_doctor, create_schedule, get_schedule, make_appointment}

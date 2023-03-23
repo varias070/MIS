@@ -6,10 +6,15 @@ module.exports = {create_patient, create_doctor, create_schedule, get_schedule, 
 
 
 async function create_patient(register_data) {
-    let patient = await prisma.patient.create({
-        data: register_data
-    })
-    console.log(patient)
+    try {
+        let patient = await prisma.patient.create({
+            data: register_data
+        })
+        return patient
+    }
+    catch {
+        throw Error("Пользователь с указаным email уже существует. Укажите другой email")
+    }
 }
 
 
@@ -47,7 +52,7 @@ async function create_doctor(data){
     let doctor = await prisma.doctor.create({
         data: data
     })
-    console.log(doctor)
+    return doctor
 }
 
 

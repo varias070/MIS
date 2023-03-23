@@ -1,21 +1,51 @@
 const db = require("./db_controller.js");
 const dayjs = require('dayjs');
 
-module.exports = {create_patient, create_schedule, get_schedule, make_appointment}
+module.exports = {create_patient, create_doctor, create_schedule, get_schedule, make_appointment}
+
 
 function create_patient(req, res){
     let body = "";
     req.on("data", chunk => {
         body += chunk.toString();
+        res.setHeader("Content-Type", "application/json")
     });
 
     req.on("end", () =>{
         let data = JSON.parse(body)
         db.create_patient(data)
-        res.statusCode = 200;
-        res.setHeader("Content-Type", "application/json");
-        res_data = JSON.stringify(data)
-        res.end(res_data)
+        .catch(err => {
+            res_data = JSON.stringify(err.message)
+            res.end(res_data)
+        })
+        .then((answer) => {
+            res.statusCode = 200;
+            res_data = JSON.stringify(answer)
+            res.end(res_data)
+        })
+    });
+};
+
+
+function create_doctor(req, res){
+    let body = "";
+    req.on("data", chunk => {
+        body += chunk.toString();
+        res.setHeader("Content-Type", "application/json")
+    });
+
+    req.on("end", () =>{
+        let data = JSON.parse(body)
+        db.create_doctor(data)
+        .catch(err => {
+            res_data = JSON.stringify(err.message)
+            res.end(res_data)
+        })
+        .then((answer) => {
+            res.statusCode = 200;
+            res_data = JSON.stringify(answer)
+            res.end(res_data)
+        })
     });
 };
 
@@ -66,7 +96,6 @@ function create_schedule(req, res){
         body += chunk.toString();
     });
 
-//    let data = JSON.parse(body)
     req.on("end", () =>{
         let data = JSON.parse(body)
         let date = dayjs(data.date)
@@ -84,7 +113,7 @@ function create_schedule(req, res){
                 time_from: str_time_from,
                 time_to: time_to,
                 is_free: true,
-                }
+            }
             appointments.push(data)
             minute += 30
         }

@@ -14,6 +14,10 @@ const server = http.createServer((req, res) => {
         controller.create_patient(req, res)
     }
 
+    if (req.url == "/create_doctor"){
+        controller.create_doctor(req, res)
+    }
+
 //    if (req.url == "/create_appointment"){
 //        controller.create_appointment(req, res)
 //    }
@@ -29,14 +33,6 @@ const server = http.createServer((req, res) => {
     if (req.url == "/make_appointment"){
         controller.make_appointment(req, res)
     }
-//    else if (req.url == "/create_entry"){
-//        create_entry(req, res)
-//    }
-//
-//    else if (req.url == "/get_schedule"){
-//        get_schedule(req, res)
-//    }
-
 });
 
 server.listen(port, hostname, () => {

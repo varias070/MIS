@@ -21,6 +21,13 @@ async function fetchAsync (url, payload) {
 //}
 //fetchAsync("http://127.0.0.1:3000/create_patient", patient)
 
+//let doctor = {
+//    "name": "Ivan",
+//    "spec": "Хирург",
+//    "price": 1000
+//}
+//fetchAsync("http://127.0.0.1:3000/create_doctor", doctor)
+
 //let appointment = {
 //    "date": "2018-04-04T14:00",
 //    "doctor": 1,
@@ -29,13 +36,12 @@ async function fetchAsync (url, payload) {
 //    "is_free": false,
 //}
 //fetchAsync("http://127.0.0.1:3000/create_appointment", appointment)
-//fetchAsync("http://127.0.0.1:3000/create_schedule", null)
 
-let create_schedule = {
-    "doctor_id": 1,
-    "date": "2018-04-04T09:00",
-}
-fetchAsync("http://127.0.0.1:3000/create_schedule", create_schedule)
+//let create_schedule = {
+//    "doctor_id": 1,
+//    "date": "2018-04-04T09:00",
+//}
+//fetchAsync("http://127.0.0.1:3000/create_schedule", create_schedule)
 //let schedule = {
 //    "doctor_id": 1,
 //    "patient_id": null,
@@ -44,8 +50,10 @@ fetchAsync("http://127.0.0.1:3000/create_schedule", create_schedule)
 //    "is_free": true,
 //}
 //fetchAsync("http://127.0.0.1:3000/get_schedule", schedule)
-
-//let appointment_update = {
-//    "id": 1,
-//}
-//fetchAsync("http://127.0.0.1:3000/make_appointment", appointment_update)
+//
+let appointment_update = {
+    "id": 6,
+    "patient_id": 1,
+    "type": 0
+}
+fetchAsync("http://127.0.0.1:3000/make_appointment", appointment_update)

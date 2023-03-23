@@ -151,7 +151,7 @@ function make_appointment(req, res){
 
     req.on("end", () =>{
         let data = JSON.parse(body)
-        db.get_schedule(data).then((answer) => {
+        db.make_appointment(data).then((answer) => {
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json");
             let res_data = JSON.stringify(answer)

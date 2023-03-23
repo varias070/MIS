@@ -13,7 +13,7 @@ async function create_patient(register_data) {
         return patient
     }
     catch {
-        throw Error("Пользователь с указаным email уже существует. Укажите другой email")
+        throw Error("Пользователь с указанным email уже существует. Укажите другой email")
     }
 }
 
@@ -70,15 +70,34 @@ async function get_schedule(data){
     return schedule
 }
 
+async function check_appointment(data){
+    let appointment = await prisma.appointment.findFirst({
+        where: {
+            id: data.id,
+            is_free: true
+        }
+    })
+    if (appointment == null){
+        return false
+    }
+    return true
+}
+
 
 async function make_appointment(data){
+    let check = await check_appointment(data)
+    if (check == false){
+        return "На указанное время существует запись. Выбирите другое время"
+    }
     let appointment = await prisma.appointment.update({
         where :{
-            id: 79
+            id: data.id,
         },
         data: {
             is_free: false,
-            patient_id: 1,
+            patient_id: data.patient_id,
+            type: data.type
         },
     })
+    return appointment
 }

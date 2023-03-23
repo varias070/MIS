@@ -2,8 +2,8 @@ version: "3.8"
 services:
   db:
     container_name: db_mis
-    image: mysql:latest
-    command: --default-authentication-plugin=mysql_native_password --lower_case_table_names=1
+    image: mysql:8.0.32
+    command: --default-authentication-plugin=mysql_native_password  --authentication_policy=mysql_native_password --lower_case_table_names=1
     restart: always
     env_file: ./.env
     environment:
@@ -12,10 +12,12 @@ services:
       MYSQL_USER: $MYSQL_USER
       MYSQL_PASSWORD: $MYSQL_PASSWORD
     ports:
-      - $MYSQL_PORT:$MYSQL_PORT_LOCAL
+      - 33060:3306
 
   app:
     depends_on:
       - db
+    env_file: ./.env
     build: .
-    network_mode: "host"
+    ports:
+      - 3000:3000

@@ -10,9 +10,9 @@
 2. Выполнить 
 
    ```bash
-   1 docker-compose up db
-   2 docker-compose up app
-   3 docker-compose exec app node filler.js
+    1 docker-compose up db
+    2 docker-compose up app
+    3 docker-compose exec app node filler.js
    ```
 3.  docker-compose exec app node filler.js выполняется только при первом запуске, дальнейший запуск происходит командой
    ```bash

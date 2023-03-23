@@ -49,46 +49,6 @@ function create_doctor(req, res){
     });
 };
 
-//function create_appointment(req, res){
-//    let body = "";
-//    req.on("data", chunk => {
-//        body += chunk.toString();
-//    });
-//
-//    req.on("end", () =>{
-//        let data = JSON.parse(body)
-//
-//        let date = dayjs(data.date)
-//        let str_date = `${date.day()}-${date.month()}-${date.year()}`
-//        let time_from = `${date.hour()}-${date.minute()}`
-//        let time_add = date.add(30, "minute")
-//        let time_to = `${time_add.hour()}-${time_add.minute()}`
-//        let appointment_data = {
-//            "doctor_id": data.doctor,
-//            "patient_id": data.patient,
-//            "date": str_date,
-//            "time_from": time_from,
-//            "time_to": time_to,
-//            "type": data.type,
-//            "is_free": data.is_free,
-//        }
-//
-//        let db_answer = db.create_appointment(appointment_data)
-//                .then((answer) => {
-//                console.log("feafaet")
-//                    console.log(answer)
-//                })
-//        res.setHeader("Content-Type", "application/json");
-//        console.log(db_answer)
-//        if (db_answer == true){
-//            res.statusCode = 200;
-//            res_data = JSON.stringify(data)
-//            res.end(res_data)
-//        }
-//        res_data = JSON.stringify({"except": "Запись на это время уже существует"})
-//        return res.end(res_data)
-//    });
-//};
 
 function create_schedule(req, res){
     let body = "";

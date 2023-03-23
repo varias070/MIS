@@ -22,9 +22,16 @@ model Patient {
 model Doctor {
   id       Int        @id @default(autoincrement())
   name     String
-  spec     String
+  spec     Spec @relation(fields: [spec_id], references: [id])
+  spec_id   Int
   price    Int
   appointments Appointment[]
+}
+
+model Spec {
+     id       Int        @id @default(autoincrement())
+     title String
+     doctors Doctor[]
 }
 
 model Appointment  {

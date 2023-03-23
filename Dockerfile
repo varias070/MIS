@@ -7,4 +7,5 @@ RUN npm install
 COPY . .
 RUN npx prisma generate
 
-CMD [ "node", "app.js" ]
+ENTRYPOINT ["sh", "entrypoint.sh"]
+CMD ["node", "app.js"]

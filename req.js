@@ -21,12 +21,12 @@ async function fetchAsync (url, payload) {
 //}
 //fetchAsync("http://127.0.0.1:3000/create_patient", patient)
 
-let doctor = {
-    "name": "Ivan",
-    "spec": "Хирург",
-    "price": 1000
-}
-fetchAsync("http://127.0.0.1:3000/create_doctor", doctor)
+//let doctor = {
+//    "name": "Ivan",
+//    "spec_id": 1,
+//    "price": 1000
+//}
+//fetchAsync("http://127.0.0.1:3000/create_doctor", doctor)
 
 //let appointment = {
 //    "date": "2018-04-04T14:00",
@@ -43,9 +43,9 @@ fetchAsync("http://127.0.0.1:3000/create_doctor", doctor)
 //}
 //fetchAsync("http://127.0.0.1:3000/create_schedule", create_schedule)
 //let schedule = {
-//    "doctor_id": 1,
+//    "doctor_id": 2,
 //    "patient_id": null,
-//    "date": '3-3-2018',
+//    "date": '3-9-2023 ',
 //    "time_from": '20-30',
 //    "is_free": true,
 //}

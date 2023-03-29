@@ -10,7 +10,7 @@
 2. Выполнить 
 
    ```bash
-    docker-compose pool
+    docker-compose pull
     docker-compose build 
     docker-compose up db
     docker-compose up app

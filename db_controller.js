@@ -64,8 +64,8 @@ async function create_schedule(data){
 
 async function get_schedule(data){
     let schedule = await prisma.appointment.findMany({
-    where: data,
-})
+        where: data,
+    })
     return schedule
 }
 

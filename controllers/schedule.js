@@ -16,17 +16,17 @@ function create_schedule(req, res){
         let appointments = []
         let minute = 30
         for (let i = 0; i < 24; i++){
-            let r = date.add(minute, "minute")
-            let str_date = `${r.day()}-${r.month()}-${r.year()}`
-            let time_to = `${r.hour()}-${r.minute()}`
-            let time_from = r.subtract(30, "minute")
-            let str_time_from = `${time_from.hour()}-${time_from.minute()}`
-            data = {
+            let appointment_time = date.add(minute, "minute")
+            let str_date = appointment_time.format('DD-MM-YYYY')
+            let time_to = appointment_time.format('HH-mm')
+            let time_from = appointment_time.subtract(30, "minute").format('HH-mm')
+            let data = {
                 doctor_id: data.doctor_id,
                 date: str_date,
-                time_from: str_time_from,
+                time_from: time_from,
                 time_to: time_to,
                 is_free: true,
+
             }
             appointments.push(data)
             minute += 30

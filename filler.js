@@ -26,32 +26,32 @@ async function main(){
         {"phone": "+7 916 743 24 35", "name": "Elena", "email": "9xamale@examaple.com", "gender": "male"}
     ]
 
-    await prisma.spec.createMany({
-        data: specs,
-    })
-    await prisma.doctor.createMany({
-        data: doctors,
-    })
-    await prisma.patient.createMany({
-        data: patients,
-    })
+//    await prisma.spec.createMany({
+//        data: specs,
+//    })
+//    await prisma.doctor.createMany({
+//        data: doctors,
+//    })
+//    await prisma.patient.createMany({
+//        data: patients,
+//    })
 
     let date = dayjs("2023-10-04T9:00")
     let appointments = []
     let minute = 30
     for (let doctor_id = 1; doctor_id < 5; doctor_id++){
         for (let i = 0; i < 24; i++){
-            let r = date.add(minute, "minute")
-            let str_date = `${r.day()}-${r.month()}-${r.year()}`
-            let time_to = `${r.hour()}-${r.minute()}`
-            let time_from = r.subtract(30, "minute")
-            let str_time_from = `${time_from.hour()}-${time_from.minute()}`
-            data = {
+            let appointment_time = date.add(minute, "minute")
+            let str_date = appointment_time.format('DD-MM-YYYY')
+            let time_to = appointment_time.format('HH-mm')
+            let time_from = appointment_time.subtract(30, "minute").format('HH-mm')
+            let data = {
                 doctor_id: doctor_id,
                 date: str_date,
-                time_from: str_time_from,
+                time_from: time_from,
                 time_to: time_to,
                 is_free: true,
+
             }
             appointments.push(data)
             minute += 30

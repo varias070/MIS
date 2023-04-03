@@ -1,11 +1,10 @@
 const db = require("../db_controller.js");
 const validator = require('validator')
 
-module.exports = {create_patient}
+module.exports = {create_patient, delete_patient, get_patient}
 
 
 function create_patient(req, res){
-
     let body = "";
     req.on("data", chunk => {
         body += chunk.toString();
@@ -42,3 +41,39 @@ function create_patient(req, res){
         };
     });
 };
+
+function delete_patient(req, res){
+    let body = "";
+    req.on("data", chunk => {
+        body += chunk.toString();
+        res.setHeader("Content-Type", "application/json")
+    });
+
+    req.on("end", () =>{
+        let data = JSON.parse(body)
+        db.delete_patient(data)
+        .then((answer) => {
+            res.statusCode = 200;
+            res_data = JSON.stringify(answer)
+            res.end(`delete ${res_data}`)
+        })
+    });
+}
+
+function get_patient(req, res){
+    let body = "";
+    req.on("data", chunk => {
+        body += chunk.toString();
+        res.setHeader("Content-Type", "application/json")
+    });
+
+    req.on("end", () =>{
+        let data = JSON.parse(body)
+        db.get_patient(data)
+        .then((answer) => {
+            res.statusCode = 200;
+            res_data = JSON.stringify(answer)
+            res.end(res_data)
+        })
+    });
+}

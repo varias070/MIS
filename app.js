@@ -20,6 +20,8 @@ app.post("/create_spec", speciality.create_spec)
 app.post("/create_schedule", schedule.create_schedule)
 app.post("/get_schedule", schedule.get_schedule)
 app.post("/make_appointment", appointment.make_appointment)
+app.post("/delete_patient", patient.delete_patient)
+app.post("/get_patient", patient.get_patient)
 
 
 app.listen(port, () => {

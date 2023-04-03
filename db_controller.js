@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
-module.exports = {create_patient, create_doctor, create_schedule, get_schedule, make_appointment, create_spec}
+module.exports = {create_patient, create_doctor, create_schedule, get_schedule, make_appointment, create_spec, delete_patient, get_patient}
 
 
 async function create_patient(register_data) {
@@ -106,4 +106,24 @@ async function create_spec(data){
         data: data,
     })
     return spec
+}
+
+async function delete_patient(patient){
+    let delete_patient = prisma.patient.delete({
+        where: patient
+    })
+    let delete_appointments = prisma.appointment.deleteMany({
+        where: {
+            patient_id: patient.id
+        }
+    })
+    await prisma.$transaction([delete_patient, delete_appointments])
+    return patient
+}
+
+async function get_patient(data){
+    let patients = await prisma.patient.findMany({
+        where: data,
+    })
+    return patients
 }

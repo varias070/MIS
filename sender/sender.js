@@ -13,7 +13,7 @@ let transporter = nodemailer.createTransport({
 
 function send(email, text){
     let mailOptions = {
-        from: 'MIS@gmail.com',
+        from: conf.transporter.auth.user,
         to: email,
         subject: "Оповищение о приеме к врачу",
         text: text,

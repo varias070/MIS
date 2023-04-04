@@ -26,17 +26,17 @@ async function main(){
         {"phone": "+7 916 743 24 35", "name": "Elena", "email": "9xamale@examaple.com", "gender": "male"}
     ]
 
-//    await prisma.spec.createMany({
-//        data: specs,
-//    })
-//    await prisma.doctor.createMany({
-//        data: doctors,
-//    })
-//    await prisma.patient.createMany({
-//        data: patients,
-//    })
+    await prisma.spec.createMany({
+        data: specs,
+    })
+    await prisma.doctor.createMany({
+        data: doctors,
+    })
+    await prisma.patient.createMany({
+        data: patients,
+    })
 
-    let date = dayjs("2023-10-04T9:00")
+    let date = dayjs("2023-04-05T9:00")
     let appointments = []
     let minute = 30
     for (let doctor_id = 1; doctor_id < 5; doctor_id++){
@@ -58,6 +58,7 @@ async function main(){
         }
     minute = 30
     }
+    console.log(appointments)
     await prisma.appointment.createMany({
         data: appointments,
     })

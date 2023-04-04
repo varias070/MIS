@@ -3,8 +3,8 @@ const prisma = require('./prisma_client.js');
 const dayjs = require('dayjs');
 
 
-let today = dayjs("")
-let time = today.format("HH-mm")
+let today = dayjs()
+let time = today.add(2, "hour").format("HH-mm")
 let day = today.format("DD-MM-YYYY")
 let today_appointments = prisma.get_today_appointments(day, time).then((appointments) => {
     for(let appointment of appointments){

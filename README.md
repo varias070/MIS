@@ -49,7 +49,7 @@
 
 6. Запуск рассылки 
    
-   открыть файл ./sender/config.js и настроить transporter
+   открыть файл ./sender/config.js и настроить transporter.
    открыть crontab на хосте
    ```bash
       crontab -e

@@ -47,6 +47,7 @@
 
 5. Запуск рассылки 
    
+   открыть файл ./sender/sender.js и настроить transporter
    открыть crontab на хосте
    ```bash
       crontab -e

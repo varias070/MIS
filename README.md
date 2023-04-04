@@ -7,7 +7,9 @@
       ```bash
        git clone git@github.com:varias070/MIS.git
      ```
-2. Выполнить 
+2. настроить файл .env пример можно посмотреть в .env.dev
+
+3. Выполнить 
 
    ```bash
     docker-compose pull
@@ -16,12 +18,12 @@
     docker-compose up app
     docker-compose exec app node filler.js
    ```
-3.  docker-compose exec app node filler.js выполняется только при первом запуске, дальнейший запуск происходит командой
+4. docker-compose exec app node filler.js выполняется только при первом запуске, дальнейший запуск происходит командой
    ```bash
    docker-compose up
    ```
 
-4. Сценарий использования
+5. Сценарий использования
 
    Для удобного тестирование все запросы имеют метод POST(конечно в производственной среде это не допустимо)
 
@@ -45,9 +47,9 @@
 
    более подробные примеры содержатся в файле req.js
 
-5. Запуск рассылки 
+6. Запуск рассылки 
    
-   открыть файл ./sender/sender.js и настроить transporter
+   открыть файл ./sender/config.js и настроить transporter
    открыть crontab на хосте
    ```bash
       crontab -e
